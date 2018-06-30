@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue列表渲染</title>
+</head>
+<body>
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<hr>
+		
+		<h2>遍历数组</h2>
+		<ul>
+			<li v-for="(num,index) in numList" :key="index">{{index}} : {{ num }} </li>
+		</ul>
+		<button @click="changeNumList">数组变化</button>
+
+		<h2>遍历对象</h2>
+		<ul>
+			<li v-for="(item,key,index) in person">{{index}} - {{key}} : {{item}} </li>
+		</ul>
+		<button @click="changePerson">改变对象</button>
+
+		<hr>
+
+		<div>
+
+			<template v-for="item in number"> 
+				<span>{{item}}</span>
+				<span>哈哈哈</span>
+				
+			 </template>
+
+		</div>
+
+		<hr>
+
+		<ul>
+			<li v-if="item.isActive" v-for="item in nameList" > {{item.name}} </li>
+		</ul>
+	</div>
+
+	<script src="../dist/vue.js"></script>
+	<script>
+		//创建Vue实例
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				title: 'Vue列表渲染',
+				numList: ['一','二','三','四','五','六','七','八'],
+				person: {name:'李白', age:45, address:'长安'},
+				number: 100,
+				nameList: [
+					{name:'松江', isActive:true},
+					{name:'李辉', isActive:false},
+					{name:'小明', isActive:true},
+					{name:'笑话', isActive:true}
+				]
+			},
+			methods: {
+				changeNumList: function(){
+					//this.numList.push('十五'); 管用
+					//this.numList.reverse(); 管用
+					//this.numList.sort();  管用
+
+					//this.numList[4] = '李逵'; 没用
+					//this.$set(this.numList, 4, '李逵'); 管用
+					//Vue.set(this.numList, 4, '李逵'); 管用
+
+					//this.numList.length = 5; ，没用
+					//this.numList.splice(5); 管用
+				},
+
+				changePerson: function(){
+					//this.person.age = 100; 管用
+					//delete this.person; 没用
+					//this.person.email = 'libai@qq.com'; 没用
+
+					//Vue.set(this.person, 'email', 'libai@qq.com'); 管用
+
+					//this.person = {name:'杜甫'} 管用
+				}
+			}
+		})
+
+
+	</script>
+</body>
+</html>

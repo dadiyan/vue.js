@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue事件</title>
+	<style>
+		.box{
+			border: 1px solid #ccc;
+			padding: 10px;
+			width: 600px;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<h1>事件</h1>
+		<hr>
+		
+		<div class="box" @click.capture="clickDivFn">
+			<button @click.stop="clickFn">单击</button>
+			<br>
+			<button @click="say('Hi')">say hi</button>
+			<button @click="say('Hellow', $event)">say Hellow</button>
+		</div>
+
+		<hr>
+		<form action="/index.php">
+			<button @click.prevent="clickFormFn">提交</button>
+		</form>
+
+		<hr>
+
+		<input type="text" @keyup.up="keyupFn">
+
+		<hr>
+
+		<button @click.ctrl="clickFn">按住ctrl键，再点击我</button>
+
+		<input type="text" @keyup.shift.65="clickFn">
+	</div>
+	
+	
+
+
+
+	<script src="../dist/vue.js"></script>
+	<script>
+		//创建Vue实例
+		var vm = new Vue({
+			el: '#app',
+			methods: {
+				clickFn: function(){
+					alert("啊，我被打击了");
+				},
+				say: function(val, event) {
+					alert(val);
+					//alert(event)
+				},
+				clickDivFn: function(){
+					alert('啊，我是DIV');
+				},
+				clickFormFn: function(){
+					alert('啊，我被按了');
+				},
+				keyupFn: function(){
+					alert('啊被触发了');
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue条件渲染</title>
+</head>
+<body>
+	<div id="app">
+		
+		<template v-if="is">
+			<h1>静夜思</h1>
+			<p>窗前明月光</p>
+			<p>疑是地上霜</p>
+			<p>去头望明月</p>
+			<p>低头思故乡</p>
+		</template>
+		<p v-else>
+			同志们好
+		</p>
+
+		<button @click="changeIs">切换</button>
+
+		<hr>
+
+		<p v-if="tag === 'A'">这里是A</p>
+		<p v-else-if="tag === 'B'">这里是B</p>
+		<p v-else-if="tag === 'C'">这里是C</p>
+		<p v-else>这里什么都不是</p>
+
+		<select v-model="tag">
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+		</select>
+
+		<hr>
+
+
+		<!--复用已有的元素-->
+		<template v-if="isUserLogin" >
+			<label>用户名</label>
+			<input type="text" placeholder="请输入用户名" key="userLoginForm">
+		</template>
+		<template v-else >
+			<label>邮箱</label>
+			<input type="text" placeholder="请输入邮箱" key="emailLoginForm">
+		</template>
+		<br>
+		<button @click="isUserLogin = !isUserLogin">更换登录方式</button>
+
+	
+		<hr>
+
+		<p v-if="is">哈哈哈哈</p>
+		<p v-show="is">嘿嘿嘿</p>
+	</div>
+
+	<script src="../dist/vue.js"></script>
+	<script>
+		//创建Vue实例
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				is: false,
+				tag: 'A',
+				isUserLogin: true
+			},
+			methods: {
+				changeIs: function(){
+					this.is = !this.is;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

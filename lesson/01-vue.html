@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue模板基本语法</title>
+    <style>
+    [v-cloak] {
+        display: none !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <p>hello {{ message }}</p>
+        <p v-text="message">hello</p>
+        <p v-once v-bind:title="title">{{ message }}</p>
+        <p v-once v-text="message">hello</p>
+        <p v-html="message"></p>
+        <input type="text" v-model="message">
+        <button v-bind:disabled="isDisabled">按钮</button>
+        <hr>
+        <p>
+            {{ true ? 1 : 0 }}
+        </p>
+        <hr>
+        <!--指令的缩写-->
+        <input type="text" v-bind:value="message">
+        <input type="text" :value="message">
+        <button v-on:click="alertFn">弹框</button>
+        <button @click="alertFn">弹框</button>
+    </div>
+    <script src="../dist/vue.js"></script>
+    <script>
+    //创建Vue实例
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: '同志你好',
+            title: '你好',
+            isDisabled: true
+        },
+        methods: {
+            alertFn: function() {
+                alert('啊，我弹出来了');
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

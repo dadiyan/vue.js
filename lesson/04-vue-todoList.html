@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todoList</title>
+	<style>
+		[v-cloak] {
+			display: none !important;
+		}
+	</style>
+</head>
+<body>
+	<div id="app" v-clock>
+		<h1>TodoList</h1>
+		<hr>
+		
+		<input type="text" v-model="newTodoValue" placeholder="请输入新的todo项目值">
+		<button @click="addTodo()">添加</button>
+		<ul>
+			<li v-for="(todo,index) in todos" :key="todo.id"> 
+				{{ todo.title }}
+				<button @click="removeTodo(index)">删除</button>
+			</li>
+		</ul>
+	</div>
+
+	<script src="../dist/vue.js"></script>
+	<script>
+		//创建Vue实例
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				todos: [
+					{id: 1, title:'狂人日记'},
+					{id: 2, title:'朝花夕拾'},
+					{id: 3, title:'彷徨'},
+					{id: 4, title:'呐喊'},
+					{id: 5, title:'阿Q正传'},
+				],
+				newTodoId: 6,
+				newTodoValue: ''
+			},
+			methods: {
+				addTodo: function(){
+					this.todos.push({
+						id: this.newTodoId ++,
+						title: this.newTodoValue
+					});
+					this.newTodoValue = '';
+				},
+				removeTodo: function(index){
+					this.todos.splice(index, 1);
+				}
+			}
+		})
+	</script>
+</body>
+</html>

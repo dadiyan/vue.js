@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue样式操作</title>
+	<style>
+		.info {
+			margin-top: 20px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			color: #999;
+		}
+
+		.warn {
+			background-color: orange;
+		}
+
+		.danger {
+			background-color: red;
+		}
+
+		.success {
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		
+		<div :class="className">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis quaerat harum nesciunt autem sequi, et! Cupiditate dolore, possimus veritatis temporibus ab adipisci officiis dolorum commodi ullam doloribus nisi, rerum unde!</div>
+		<div :class="{info: isInfo, success: isSuccess}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis quaerat harum nesciunt autem sequi, et! Cupiditate dolore, possimus veritatis temporibus ab adipisci officiis dolorum commodi ullam doloribus nisi, rerum unde!</div>
+		<div :class="classObject">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis quaerat harum nesciunt autem sequi, et! Cupiditate dolore, possimus veritatis temporibus ab adipisci officiis dolorum commodi ullam doloribus nisi, rerum unde!</div>
+		<div class="item" :class="[className, 'danger']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis quaerat harum nesciunt autem sequi, et! Cupiditate dolore, possimus veritatis temporibus ab adipisci officiis dolorum commodi ullam doloribus nisi, rerum unde!</div>
+
+
+		<hr>
+
+
+		<div :style="styleObject">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, repudiandae?
+		</div>
+
+		<div :style="[styleObject, {color:'red'}, {'transform': 'scale(2, 3)'}]" style="margin-top:20px">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, repudiandae?
+		</div>
+
+		<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+
+
+
+
+	</div>
+
+	<script src="../dist/vue.js"></script>
+	<script>
+		//创建Vue实例
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				className: 'info',
+				isInfo: false,
+				isSuccess: true,
+				classObject: {
+					info: true,
+					warn: true,
+					success: true
+				},
+				styleObject: {
+					'padding':'20px',
+					'width': '500px',
+					'border':'1px solid #ccc'
+				}
+			}
+		})
+	</script>
+</body>
+</html>
